@@ -2,9 +2,61 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+
+    /*Get numbers from 1 - 10*/
+    //Get numbers  between 1 - 10
+    @*Get numbers between 1 - 10*@
+    var numbers = Enumerable.Range(1, 10); //Get numbers from 1 - 10
+    int PrintenGetallen(int getal)
+    {
+        return (getal * 10);
+    }
+
 }
+
+
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @{
+        foreach (var number in numbers)
+        {
+            @(PrintenGetallen(number))@: komt via methode <br />
+            @number @: * 10 = @(number * 10) &nbsp; litaral @@: <br />
+            <text>@(number) * 10 = @(number * 10)&nbsp; met text tag</text><br />
+        }
+    }
+
+
+    @for (var i = 0; i < numbers.Count(); i++)
+    {
+        @numbers.ElementAt(i)
+    }
+    @if (numbers.Count() == 10)
+    {
+        @:10 Numbers - Good!
+    }
+
+    @{var condition = 1; var message = "";}
+    @switch (condition)
+    {
+        case 1:
+            message = "Case 1";
+            break;
+        case 2:
+            message = "Case 2";
+            break;
+        case 3:
+            message = "Case 3";
+            break;
+        default:
+            message = "Default Case";
+            break;
+    }
+    @message
+
+
+
+
 </div>
