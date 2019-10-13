@@ -10,6 +10,10 @@ namespace WebApplicationLearnRazor.Pages
 {
     public class IndexModel : PageModel
     {
+        [BindProperty]
+        public string Name { get; set; }
+        public string Message { get; set; }
+
         private readonly ILogger<IndexModel> _logger;
 
         public IndexModel(ILogger<IndexModel> logger)
@@ -19,7 +23,12 @@ namespace WebApplicationLearnRazor.Pages
 
         public void OnGet()
         {
+            Message = "Get used";
 
+        }
+        public void OnPost()
+        {
+            Message = "Post used";
         }
     }
 }

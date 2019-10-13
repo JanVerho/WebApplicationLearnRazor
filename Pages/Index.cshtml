@@ -1,5 +1,6 @@
 ﻿@page
 @model IndexModel
+using IndexModel
 @{
     ViewData["Title"] = "Home page";
 
@@ -11,9 +12,21 @@
     {
         return (getal * 10);
     }
-
 }
 
+@{
+    var name = string.Empty;
+    if (Request.HasFormContentType)
+    {
+        name = Request.Form["name"];
+        Model.Name = name;
+    }
+}
+
+
+<h3>@Model.Message</h3>
+<form method="post"><button class="btn btn-default">Click to post (met form)</button></form>
+<p><a href="/index" class="btn btn-default">Click to Get (met URL/Link)</a></p>
 
 
 <div class="text-center">
@@ -56,7 +69,19 @@
     }
     @message
 
-
+    <div style="margin-top:30px;">
+        <form method="post">
+            <div>Name: <input asp-for="Name" /></div>
+            <div><input type="submit" /></div>
+        </form>
+        @if (!string.IsNullOrEmpty(Model.Name))
+        {
+            <p>Hello @Model.Name!</p>
+        }
+    </div>
 
 
 </div>
+
+
+//https://www.learnrazorpages.com/razor-pages/handler-methods#named-handlers
